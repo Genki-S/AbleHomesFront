@@ -63,6 +63,11 @@ function initAutocomplete() {
       }
     });
     map.fitBounds(bounds);
+
+    // scroll to the results
+    $('html,body').animate({
+      scrollTop:   $('#search-results').offset().top
+    }, 500);
   });
   // [END region_getplaces]
 }

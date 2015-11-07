@@ -14,7 +14,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Able Homes CSS -->
 		<link rel="stylesheet" href="./ablehomes.css">
+                <link rel="stylesheet" href="./css/map.css">
 
+                <script src="./js/map.js"></script>
 		</head>
 
 	<body>
@@ -105,31 +107,31 @@
       <div class="container">
         <h1>Able Homes</h1>
         <p>Find the perfect home for you or a loved one.</p>
-        <a href="#">Search</a>
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
       </div>
     </div> 
 
 <!--search results-->
     <div class="search-results">
-        <div class="container">
-            <h2>Your search results</h2>
-            <p>Not sure what you're looking for? Here's a few suggestions for you.</p>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="thumbnail">
-                        <img src="http://goo.gl/0sX3jq">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://goo.gl/Av1pac">
-                    </div>
-                    <div class="thumbnail">
-                        <img src="http://goo.gl/vw43v1">
-                    </div>
-                </div>
+      <div class="container">
+        <h2>Your search results</h2>
+        <p>Not sure what you're looking for? Here's a few suggestions for you.</p>
+        <div class="row">
+          <div class="col-md-8">
+            <div id="map-container" class="thumbnail">
+              <div id="map"></div>
             </div>
+          </div>
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <img src="http://goo.gl/Av1pac">
+            </div>
+            <div class="thumbnail">
+              <img src="http://goo.gl/vw43v1">
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
 <!--learn more-->
@@ -155,6 +157,6 @@
 	  </div>
 	</div>
 
-
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4&libraries=places&callback=initAutocomplete" async defer></script>
   </body>
 </html>

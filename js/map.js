@@ -3,8 +3,10 @@
 // pick list containing a mix of places and predicted search terms.
 
 function initAutocomplete() {
+  var searchMarker = null;
+  var markers = [];
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
+    center: {lat: 37.7785190, lng: -122.405640037},
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
@@ -19,7 +21,47 @@ function initAutocomplete() {
     searchBox.setBounds(map.getBounds());
   });
 
-  var markers = [];
+  map.addListener('idle', function() {
+    var bounds = map.getBounds();
+    var center = bounds.getCenter();
+    var ne = bounds.getNorthEast();
+    var radMeter = getDistanceMeter(center, ne) / 2.0;
+    // update with retsly data
+    $.ajax({
+      type: 'GET',
+      url: 'https://rets.io/api/v1/test/listings?access_token=ac9d8bcc0a55c3d603a46c7bb7a0868e',
+      dataType: 'json',
+      data: {
+        near: center.lat() + ',' + center.lng(),
+        radius: radMeter,
+      }
+    }).done (function (res) {
+      // Clear out the old markers.
+      markers.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      res.bundle.forEach(function(house) {
+        console.log(house);
+
+        var lat = house.coordinates[1];
+        var lng = house.coordinates[0];
+
+        // Create a marker for each place.
+        var marker = new google.maps.Marker({
+          map: map,
+          title: house.address,
+          position: {lat: lat, lng: lng},
+        });
+        markers.push(marker);
+        google.maps.event.addListener(marker, "mousedown", function() {
+          console.log(house);
+        });
+      });
+    });
+  });
+
   // [START region_getplaces]
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
@@ -29,12 +71,6 @@ function initAutocomplete() {
     if (places.length == 0) {
       return;
     }
-
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
 
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
@@ -48,12 +84,12 @@ function initAutocomplete() {
       };
 
       // Create a marker for each place.
-      markers.push(new google.maps.Marker({
+      searchMarker = new google.maps.Marker({
         map: map,
         icon: icon,
         title: place.name,
         position: place.geometry.location
-      }));
+      });
 
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
@@ -71,3 +107,19 @@ function initAutocomplete() {
   });
   // [END region_getplaces]
 }
+
+var rad = function(x) {
+  return x * Math.PI / 180;
+};
+
+var getDistanceMeter = function(p1, p2) {
+  var R = 6378137; // Earth’s mean radius in meter
+  var dLat = rad(p2.lat() - p1.lat());
+  var dLong = rad(p2.lng() - p1.lng());
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+    Math.sin(dLong / 2) * Math.sin(dLong / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c;
+  return d; // returns the distance in meter
+};

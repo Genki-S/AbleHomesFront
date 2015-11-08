@@ -18,16 +18,89 @@
 		</head>
 
 	<body>
+<!--Nav bar-->
     <div class="nav">
       <div class="container">
         <ul class="pull-right">
-          <li><a href="#">Sign Up</a></li>
-          <li><a href="#">Log In</a></li>
+          <li><a data-toggle="modal" href="#myModal">Sign Up</a></li>
+          <li><a data-toggle="modal" href="#loginModal">Log In</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </div>
     </div>
 
+    <!--Sign up Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!--Sign up Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Create an Able Homes profile</h4>
+        </div>
+        <div class="modal-body">
+		    <form role="form">
+		  		<div class="form-group">
+		    		<label for="Full name">Your full name:</label>
+		    		<input type="email" class="form-control" id="name">
+		  		</div>
+		  		<div class="form-group">
+		    		<label for="email">Email address:</label>
+		    		<input type="email" class="form-control" id="email">
+		  		</div>
+		  		<div class="form-group">
+		    		<label for="pwd">Password:</label>
+		    		<input type="password" class="form-control" id="pwd">
+		  		</div>
+		  		<div class="form-group">
+		    		<label for="number">Phone number:</label>
+		    		<input type="email" class="form-control" id="phone-number">
+		  		</div>
+		  		<div class="checkbox">
+		    		<label><input type="checkbox"> Remember me</label>
+		  		</div>
+		  		<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+ <!--Log in Modal -->
+  <div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!--Log in Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Login to your Able Homes profile</h4>
+        </div>
+        <div class="modal-body">
+		    <form role="form">
+		  		<div class="form-group">
+		    		<label for="email">Email address:</label>
+		    		<input type="email" class="form-control" id="email">
+		  		</div>
+		  		<div class="form-group">
+		    		<label for="pwd">Password:</label>
+		    		<input type="password" class="form-control" id="pwd">
+		  		</div>
+		  		<div class="checkbox">
+		    		<label><input type="checkbox"> Remember me</label>
+		  		</div>
+		  		<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+<!--home landing page-->
     <div class="jumbotron">
       <div class="container">
         <h1>Able Homes</h1>
@@ -35,6 +108,8 @@
         <a href="#">Search</a>
       </div>
     </div> 
+
+<!--search results-->
     <div class="search-results">
         <div class="container">
             <h2>Your search results</h2>
@@ -56,6 +131,8 @@
             </div>
         </div>
     </div>
+
+<!--learn more-->
     <div class="learn-more">
 	  <div class="container">
 		<div class="row">
@@ -77,5 +154,7 @@
 	    </div>
 	  </div>
 	</div>
+
+
   </body>
 </html>

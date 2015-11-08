@@ -34,7 +34,7 @@ function initAutocomplete() {
       dataType: 'json',
       data: {
         near: center.lat() + ',' + center.lng(),
-        radius: radMeter,
+        radius: radMeter / 1000 + 'km',
       }
     }).done (function (res) {
       _houseList = res.bundle;
@@ -92,7 +92,9 @@ function initAutocomplete() {
     _markers.forEach(function(marker) { marker.setMap(null); });
     _markers = [];
 
-    _houseList.forEach(function(house) {
+    $('#house-list').text('');
+
+    _houseList.forEach(function(house, i) {
       console.log(house);
 
       var lat = house.coordinates[1];
@@ -108,6 +110,11 @@ function initAutocomplete() {
       google.maps.event.addListener(marker, "mousedown", function() {
         console.log(house);
       });
+
+      var content = '<li data-house-list-index="' + i + '">' +
+        '<img src="https://maps.googleapis.com/maps/api/streetview?size=150x100&location=' + lat +',' + lng + '&key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4">'
+      '</li>';
+      $('#house-list').append(content);
     });
   }
 }
@@ -127,3 +134,9 @@ var getDistanceMeter = function(p1, p2) {
   var d = R * c;
   return d; // returns the distance in meter
 };
+
+$(function () {
+  $('#house-list').on('click', 'li', function() {
+    console.log($(this).data('house-list-index'));
+  });
+});

@@ -1,5 +1,15 @@
+#map-row {
+    height: 400px;
+    margin-bottom: 10px;
+}
+
+#map-row .col-md-8,
+#map-row .col-md-4 {
+    height: 100%;
+}
+
 #map-container {
-    height: 360px;
+    height: 100%;
 }
 
 #map {
@@ -52,4 +62,18 @@
 
 #target {
     width: 345px;
+}
+
+#house-list {
+    height: 100%;
+    overflow: scroll;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#house-list li {
+    margin: 10px;
 }

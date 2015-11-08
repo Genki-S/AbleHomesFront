@@ -44,7 +44,8 @@ function initAutocomplete() {
     // update with retsly data
     $.ajax({
       type: 'GET',
-      url: 'https://rets.io/api/v1/test/listings?access_token=ac9d8bcc0a55c3d603a46c7bb7a0868e',
+      // url: 'https://rets.io/api/v1/test/listings?access_token=ac9d8bcc0a55c3d603a46c7bb7a0868e',
+      url: 'http://localhost:8081/abledhomes/v1/listings',
       dataType: 'json',
       data: {
         near: center.lat() + ',' + center.lng(),

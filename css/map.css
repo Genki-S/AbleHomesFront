@@ -94,6 +94,16 @@
     top: 30%;
 }
 
+#house-list li .accessibilityDescription {
+    font-size: 10px;
+    font-weight: bold;
+    position: absolute;
+    width: 14em;
+    text-align: center;
+    left: 48%;
+    top: 80%;
+}
+
 #houseDetailModal #houseImage img {
     width: 100%;
 }

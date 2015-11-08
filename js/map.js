@@ -5,6 +5,9 @@
 var _houseList = [];
 var _searchMarker = null;
 var _markers = [];
+var _busAndRamps = [];
+var _busAndRampsMarkers = [];
+var busAndMarkerVisible = false;
 
 function initAutocomplete() {
   var defaultIcon = {
@@ -21,6 +24,14 @@ function initAutocomplete() {
     anchor: new google.maps.Point(0, 32)
   };
 
+  var busIcon = {
+    url: '/img/busStopIcon.png',
+    size: new google.maps.Size(5, 5),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(0, 32)
+  };
+
+
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7785190, lng: -122.405640037},
     zoom: 13,
@@ -30,6 +41,12 @@ function initAutocomplete() {
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
+
+  var busControlDiv = document.createElement('div');
+  var busControl = new BusAndRampsControl(busControlDiv);
+  busControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(busControlDiv);
+
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
@@ -55,6 +72,24 @@ function initAutocomplete() {
       _houseList = res.bundle;
       houseListUpdatedHandler();
     });
+
+    var sw = bounds.getSouthWest(); // LatLng of the south-west corner
+    var NE = [ne.lng(), ne.lat()]; //format for mongo geoQuery [long,lat]
+    var SW = [sw.lng(), sw.lat()];
+    var box =  {
+      NE: NE,
+      SW: SW
+    };
+    //Make AJAX request, send box of bounds to 
+    // $.ajax({
+      // type: 'GET',
+      // url: 'http://localhost:8081/abledhomes/v1/busRamps',
+      // dataType: 'json',
+      // data: box,
+    // }).done (function (res) {
+      // _busAndRamps = res.ramps;
+      // busAndRampsUpdatedHandler();
+    // });
   });
 
   // [START region_getplaces]
@@ -148,9 +183,27 @@ function initAutocomplete() {
         '<img src="https://maps.googleapis.com/maps/api/streetview?size=150x100&location=' + lat +',' + lng + '&key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4">' +
         '<img class="accessibilityIcon" width="30%" src="/img/accessibility-icon.png">' +
         '<div class="accessibilityScore">' + house.ascore + '</div>' +
+        '<div class="accessibilityDescription">Accessibility Score</div>' +
         '</li>';
       $('#house-list').append(content);
     });
+  }
+
+  function busAndRampsUpdatedHandler() {
+    // Clear out the old markers.
+    _busAndRampsMarkers.forEach(function(marker) { marker.setMap(null); });
+    _busAndRampsMarkers = [];
+    console.log(_busAndRamps);
+    _busAndRamps.forEach(function(bus) {
+      var marker = new google.maps.Marker({
+        map: map,
+        icon: busIcon,
+        position: {lat: bus.lat, lng: bus.long},
+      });
+      marker.setVisible(busAndMarkerVisible);
+      _busAndRampsMarkers.push(marker);
+    });
+    console.log(_busAndRampsMarkers);
   }
 
   $('#house-list').on('mouseenter', 'li', function() {
@@ -215,3 +268,37 @@ var getDistanceMeter = function(p1, p2) {
   var d = R * c;
   return d; // returns the distance in meter
 };
+
+function BusAndRampsControl(controlDiv) {
+
+  // Set CSS for the control border.
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = '#fff';
+  controlUI.style.border = '2px solid #fff';
+  controlUI.style.borderRadius = '3px';
+  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.marginBottom = '22px';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Toggle bus and ramps';
+  controlDiv.appendChild(controlUI);
+
+  // Set CSS for the control interior.
+  var controlText = document.createElement('div');
+  controlText.style.color = 'rgb(25,25,25)';
+  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+  controlText.style.fontSize = '16px';
+  controlText.style.lineHeight = '38px';
+  controlText.style.paddingLeft = '5px';
+  controlText.style.paddingRight = '5px';
+  controlText.innerHTML = 'Bus And Ramps';
+  controlUI.appendChild(controlText);
+
+  // Setup the click event listeners: simply set the map to Chicago.
+  controlUI.addEventListener('click', function() {
+    _busAndRampsMarkers.forEach(function(m) {
+      busAndMarkerVisible = !busAndMarkerVisible;
+      m.setVisible(busAndMarkerVisible);
+    });
+  });
+}

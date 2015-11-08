@@ -163,6 +163,12 @@ function initAutocomplete() {
     var idx = $(this).data('house-list-index');
     arr.push(_houseList[idx]);
     localStorage.setItem('comparing-houses', JSON.stringify(arr));
+    $.notify({
+      message: 'House Saved!',
+    },{
+      z_index: 9999,
+      delay: 500,
+    });
   });
 }
 

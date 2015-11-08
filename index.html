@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-	<html lang-"eng">
-		<head>
-		<title>Able Homes--Index</title>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<html lang="en">
+  <head>
+    <title>Able Homes--Index</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-		<!-- Latest compiled JavaScript -->
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<!-- Mobile First Media Query -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- Able Homes CSS -->
-		<link rel="stylesheet" href="./ablehomes.css">
-                <link rel="stylesheet" href="./css/map.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Mobile First Media Query -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Able Homes CSS -->
+    <link rel="stylesheet" href="./css/ablehomes.css">
+    <link rel="stylesheet" href="./css/map.css">
 
-                <script src="./js/map.js"></script>
-		</head>
+    <script src="./js/map.js"></script>
+  </head>
 
-	<body>
-<!--Nav bar-->
+  <body>
+    <!--Nav bar-->
     <div class="nav">
       <div class="container">
         <ul class="pull-right">
@@ -32,77 +32,77 @@
     </div>
 
     <!--Sign up Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!--Sign up Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Create an Able Homes profile</h4>
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!--Sign up Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create an Able Homes profile</h4>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="Full name">Your full name:</label>
+                <input type="email" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="form-group">
+                <label for="number">Phone number:</label>
+                <input type="email" class="form-control" id="phone-number">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
         </div>
-        <div class="modal-body">
-		    <form role="form">
-		  		<div class="form-group">
-		    		<label for="Full name">Your full name:</label>
-		    		<input type="email" class="form-control" id="name">
-		  		</div>
-		  		<div class="form-group">
-		    		<label for="email">Email address:</label>
-		    		<input type="email" class="form-control" id="email">
-		  		</div>
-		  		<div class="form-group">
-		    		<label for="pwd">Password:</label>
-		    		<input type="password" class="form-control" id="pwd">
-		  		</div>
-		  		<div class="form-group">
-		    		<label for="number">Phone number:</label>
-		    		<input type="email" class="form-control" id="phone-number">
-		  		</div>
-		  		<div class="checkbox">
-		    		<label><input type="checkbox"> Remember me</label>
-		  		</div>
-		  		<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-        </div>
+
       </div>
-      
     </div>
-  </div>
 
- <!--Log in Modal -->
-  <div class="modal fade" id="loginModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!--Log in Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Login to your Able Homes profile</h4>
+    <!--Log in Modal -->
+    <div class="modal fade" id="loginModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!--Log in Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Login to your Able Homes profile</h4>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
         </div>
-        <div class="modal-body">
-		    <form role="form">
-		  		<div class="form-group">
-		    		<label for="email">Email address:</label>
-		    		<input type="email" class="form-control" id="email">
-		  		</div>
-		  		<div class="form-group">
-		    		<label for="pwd">Password:</label>
-		    		<input type="password" class="form-control" id="pwd">
-		  		</div>
-		  		<div class="checkbox">
-		    		<label><input type="checkbox"> Remember me</label>
-		  		</div>
-		  		<button type="submit" class="btn btn-default">Submit</button>
-			</form>
-        </div>
+
       </div>
-      
     </div>
-  </div>
 
 
-<!--home landing page-->
+    <!--home landing page-->
     <div class="jumbotron">
       <div class="container">
         <h1>Able Homes</h1>
@@ -110,7 +110,7 @@
         <input id="pac-input" class="controls" type="text" placeholder="Search Box">
       </div>
     </div>
-<!--search results-->
+    <!--search results-->
     <div id="search-results" class="container">
       <div class="container">
         <h2>Your search results</h2>
@@ -133,29 +133,29 @@
       </div>
     </div>
 
-<!--learn more-->
+    <!--learn more-->
     <div class="learn-more">
-	  <div class="container">
-		<div class="row">
-	      <div class ="col-md-4">
-			<h3>About Us</h3>
-			<p>Learn about our mission to help every person find a home that's 100% accessible.</p>
-			<p><a href="about-us.html">Learn about the Able Homes team</a></p>
-	      </div>
-		  <div class="col-md-4">
-			<h3>Our Agents</h3>
-			<p>Certified agents here to serve you.</p>
-			<p><a href="our-agents.html">Learn about our agents</a></p>
-		  </div>
-		  <div class="col-md-4">
-			<h3>Events</h3>
-			<p>Meet us in person at one of our upcoming open houses.</p>
-			<p><a href="events.html">Events</a></p>
-		  </div>
-	    </div>
-	  </div>
-	</div>
+      <div class="container">
+        <div class="row">
+          <div class ="col-md-4">
+            <h3>About Us</h3>
+            <p>Learn about our mission to help every person find a home that's 100% accessible.</p>
+            <p><a href="about-us.html">Learn about the Able Homes team</a></p>
+          </div>
+          <div class="col-md-4">
+            <h3>Our Agents</h3>
+            <p>Certified agents here to serve you.</p>
+            <p><a href="our-agents.html">Learn about our agents</a></p>
+          </div>
+          <div class="col-md-4">
+            <h3>Events</h3>
+            <p>Meet us in person at one of our upcoming open houses.</p>
+            <p><a href="events.html">Events</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4&libraries=places&callback=initAutocomplete" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4&libraries=places&callback=initAutocomplete" async defer></script>
   </body>
 </html>

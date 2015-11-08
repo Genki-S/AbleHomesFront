@@ -132,9 +132,15 @@ function initAutocomplete() {
         $('#houseDetailModal').modal();
       });
 
+      if (house.ascore > 10) {
+        house.ascore = Math.round(house.ascore / 3.5);
+      }
+
       var content = '<li data-house-list-index="' + i + '">' +
-        '<img src="https://maps.googleapis.com/maps/api/streetview?size=150x100&location=' + lat +',' + lng + '&key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4">'
-      '</li>';
+        '<img src="https://maps.googleapis.com/maps/api/streetview?size=150x100&location=' + lat +',' + lng + '&key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4">' +
+        '<img class="accessibilityIcon" width="30%" src="/img/accessibility-icon.png">' +
+        '<div class="accessibilityScore">' + house.ascore + '</div>' +
+        '</li>';
       $('#house-list').append(content);
     });
   }

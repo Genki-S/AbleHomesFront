@@ -124,7 +124,12 @@ function initAutocomplete() {
       });
       _markers.push(marker);
       google.maps.event.addListener(marker, "mousedown", function() {
-        console.log(house);
+        $('#houseDetailModal #houseImage').text('');
+        $('#houseDetailModal #houseImage').append(
+          '<img src="https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + lat +',' + lng + '&key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4">'
+        );
+        $('#saveForComparisonButton').data('house-list-index', i);
+        $('#houseDetailModal').modal();
       });
 
       var content = '<li data-house-list-index="' + i + '">' +

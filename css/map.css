@@ -77,3 +77,7 @@
 #house-list li {
     margin: 10px;
 }
+
+#houseDetailModal #houseImage img {
+    width: 100%;
+}

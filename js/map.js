@@ -7,6 +7,20 @@ var _searchMarker = null;
 var _markers = [];
 
 function initAutocomplete() {
+  var defaultIcon = {
+    url: '/img/apin50.png',
+    size: new google.maps.Size(50, 50),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(0, 32)
+  };
+
+  var hoverIcon = {
+    url: '/img/apin50hover.png',
+    size: new google.maps.Size(50, 50),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(0, 32)
+  };
+
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7785190, lng: -122.405640037},
     zoom: 13,
@@ -103,6 +117,7 @@ function initAutocomplete() {
       // Create a marker for each place.
       var marker = new google.maps.Marker({
         map: map,
+        icon: defaultIcon,
         title: house.address,
         position: {lat: lat, lng: lng},
       });
@@ -117,6 +132,38 @@ function initAutocomplete() {
       $('#house-list').append(content);
     });
   }
+
+  $('#house-list').on('mouseenter', 'li', function() {
+    var idx = $(this).data('house-list-index');
+    _markers[idx].setIcon(hoverIcon);
+  });
+
+  $('#house-list').on('mouseleave', 'li', function() {
+    var idx = $(this).data('house-list-index');
+    _markers[idx].setIcon(defaultIcon);
+  });
+
+  $('#house-list').on('click', 'li', function() {
+    var idx = $(this).data('house-list-index');
+    var lat = _houseList[idx].coordinates[1];
+    var lng = _houseList[idx].coordinates[0];
+
+    $('#houseDetailModal #houseImage').text('');
+    $('#houseDetailModal #houseImage').append(
+      '<img src="https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + lat +',' + lng + '&key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4">'
+    );
+    $('#saveForComparisonButton').data('house-list-index', idx);
+    $('#houseDetailModal').modal();
+  });
+
+  $('#saveForComparisonButton').click(function() {
+    var arrStr = localStorage.getItem('comparing-houses') || '[]';
+    var arr = JSON.parse(arrStr);
+    console.log(arr);
+    var idx = $(this).data('house-list-index');
+    arr.push(_houseList[idx]);
+    localStorage.setItem('comparing-houses', JSON.stringify(arr));
+  });
 }
 
 var rad = function(x) {
@@ -134,9 +181,3 @@ var getDistanceMeter = function(p1, p2) {
   var d = R * c;
   return d; // returns the distance in meter
 };
-
-$(function () {
-  $('#house-list').on('click', 'li', function() {
-    console.log($(this).data('house-list-index'));
-  });
-});

@@ -76,6 +76,22 @@
 
 #house-list li {
     margin: 10px;
+    position: relative;
+}
+
+#house-list li .accessibilityIcon {
+    margin-left: 30px;
+    opacity: 0.5;
+}
+
+#house-list li .accessibilityScore {
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    width: 3em;
+    text-align: center;
+    left: 55%;
+    top: 30%;
 }
 
 #houseDetailModal #houseImage img {

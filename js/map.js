@@ -161,7 +161,10 @@ function initAutocomplete() {
     var arr = JSON.parse(arrStr);
     console.log(arr);
     var idx = $(this).data('house-list-index');
-    arr.push(_houseList[idx]);
+    if (arr.find(function(house) { return house.id == _houseList[idx].id; })) {
+    } else {
+      arr.push(_houseList[idx]);
+    }
     localStorage.setItem('comparing-houses', JSON.stringify(arr));
     $.notify({
       message: 'House Saved!',

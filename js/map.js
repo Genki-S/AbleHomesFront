@@ -25,8 +25,8 @@ function initAutocomplete() {
   };
 
   var busIcon = {
-    url: '/img/busStopIcon.png',
-    size: new google.maps.Size(5, 5),
+    url: '/img/busStopIcon10x10.png',
+    size: new google.maps.Size(10, 10),
     origin: new google.maps.Point(0, 0),
     anchor: new google.maps.Point(0, 32)
   };
@@ -81,15 +81,15 @@ function initAutocomplete() {
       SW: SW
     };
     //Make AJAX request, send box of bounds to 
-    // $.ajax({
-      // type: 'GET',
-      // url: 'http://localhost:8081/abledhomes/v1/busRamps',
-      // dataType: 'json',
-      // data: box,
-    // }).done (function (res) {
-      // _busAndRamps = res.ramps;
-      // busAndRampsUpdatedHandler();
-    // });
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:8081/abledhomes/v1/busRamps',
+      dataType: 'json',
+      data: box,
+    }).done (function (res) {
+      _busAndRamps = res.ramps;
+      busAndRampsUpdatedHandler();
+    });
   });
 
   // [START region_getplaces]
@@ -296,8 +296,8 @@ function BusAndRampsControl(controlDiv) {
 
   // Setup the click event listeners: simply set the map to Chicago.
   controlUI.addEventListener('click', function() {
+    busAndMarkerVisible = !busAndMarkerVisible;
     _busAndRampsMarkers.forEach(function(m) {
-      busAndMarkerVisible = !busAndMarkerVisible;
       m.setVisible(busAndMarkerVisible);
     });
   });

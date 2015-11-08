@@ -23,12 +23,12 @@
 
   <body>
     <!--Nav bar-->
-    <div class="nav">
+    <div class="nav" role="nav" area-controls="st1" aria-checked="true">
       <div class="container">
         <ul class="pull-right">
-          <li><a data-toggle="modal" href="#myModal">Sign Up</a></li>
-          <li><a data-toggle="modal" href="#loginModal">Log In</a></li>
-          <li><a href="mailto:contact@ablehomes.com">Contact</a></li>
+          <li><a data-toggle="modal" role="menuitem" aria-controls="st1" aria-checked="true" href="#myModal">Sign Up</a></li>
+          <li><a data-toggle="modal" role="menuitem" aria-controls="st1" aria-checked="true" href="#loginModal">Log In</a></li>
+          <li><a role="menuitem" aria-controls="st1" aria-checked="true" href="mailto:contact@ablehomes.com">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -40,31 +40,31 @@
         <!--Sign up Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Create an Able Homes profile</h4>
+            <button type="button" aria-controls="st1" aria-checked="true" class="close" data-dismiss="modal">&times;</button>
+            <h4 role="contentinfo"  class="modal-title">Create an Able Homes profile</h4>
           </div>
           <div class="modal-body">
             <form role="form">
               <div class="form-group">
-                <label for="Full name">Your full name:</label>
-                <input type="name" class="form-control" id="name">
+                <label role="contentinfo" aria-checked="true" for="Full name">Your full name:</label>
+                <input type="name" role="login" aria-controls="st3" aria-checked="true" class="form-control" id="name">
               </div>
               <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" id="email">
+                <label for="email" role="contentinfo" area-checked="true">Email address:</label>
+                <input type="email" role="login" aria-controls="st3" aria-checked="true" class="form-control" id="email">
               </div>
               <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd">
+                <label for="pwd" role="contentinfo" area-checked="true">Password:</label>
+                <input type="password" role="login" aria-controls="st3" aria-checked="true" class="form-control" id="pwd">
               </div>
               <div class="form-group">
-                <label for="number">Phone number:</label>
-                <input type="number" class="form-control" id="phone-number">
+                <label for="number" role="contentinfo" area-checked="true">Phone number:</label>
+                <input type="number" role="login" aria-controls="st3" aria-checked="true" class="form-control" id="phone-number">
               </div>
               <div class="checkbox">
-                <label><input type="checkbox"> Remember me</label>
+                <label><input role="contentinfo" aria-checked="true" type="checkbox"> Remember me</label>
               </div>
-              <button type="submit" class="btn btn-default">Submit</button>
+              <button type="submit" role="login" aria-controls="st1" aria-checked="true" class="btn btn-default">Submit</button>
             </form>
           </div>
         </div>
@@ -79,23 +79,23 @@
         <!--Log in Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Login to your Able Homes profile</h4>
+            <button type="button" role="login" aria-controls="st1" aria-checked="true" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" role="contentinfo" area-checked="true">Login to your Able Homes profile</h4>
           </div>
           <div class="modal-body">
             <form role="form">
               <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="email" class="form-control" id="email">
+                <label for="email" role="contentinfo" area-checked="true">Email address:</label>
+                <input type="email" role="login" aria-controls="st1" aria-checked="true" class="form-control" id="email">
               </div>
               <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd">
+                <label for="pwd" role="contentinfo" area-checked="true">Password:</label>
+                <input type="password" role="login" aria-controls="st1" aria-checked="true" class="form-control" id="pwd">
               </div>
               <div class="checkbox">
-                <label><input type="checkbox"> Remember me</label>
+                <label role="contentinfo" area-checked="true"><input role="login" aria-controls="st1" aria-checked="true" type="checkbox"> Remember me</label>
               </div>
-              <button type="submit" class="btn btn-default">Submit</button>
+              <button type="submit" role="login" aria-controls="st1" aria-checked="true" class="btn btn-default">Submit</button>
             </form>
           </div>
         </div>
@@ -131,19 +131,19 @@
     <!--home landing page-->
     <div class="jumbotron">
       <div class="container">
-        <h1>Able Homes</h1>
-        <p>Find the perfect home for you or a loved one.</p>
-        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+        <h1 role="contentinfo" area-checked="true">Able Homes</h1>
+        <p role="contentinfo" area-checked="true">Find the perfect home for you or a loved one.</p>
+        <input id="pac-input" role="application" aria-controls="st1" aria-checked="true" class="controls" type="text" placeholder="Search Box">
       </div>
     </div>
     <!--search results-->
-    <div id="search-results" class="container">
+    <div id="search-results" role="application" aria-checked="true" class="container">
       <div class="container">
-        <h2>Your search results</h2>
-        <p>Not sure what you're looking for? Here's a few suggestions for you.</p>
+        <h2 role="contentinfo" area-checked="true">Your search results</h2>
+        <p role="contentinfo" area-checked="true">Not sure what you're looking for? Here's a few suggestions for you.</p>
         <div id="map-row" class="row">
           <div class="col-md-8">
-            <div id="map-container" class="thumbnail">
+            <div aria-checked="false" id="map-container" class="thumbnail">
               <div id="map"></div>
             </div>
           </div>
@@ -160,19 +160,19 @@
       <div class="container">
         <div class="row">
           <div class ="col-md-4">
-            <h3>About Us</h3>
-            <p>Learn about our mission to help every person find a home that's 100% accessible.</p>
-            <p><a href="about-us.html">Learn about the Able Homes team</a></p>
+            <h3 role="contentinfo" area-checked="true">About Us</h3>
+            <p role="contentinfo" area-checked="true">Learn about our mission to help every person find a home that's 100% accessible.</p>
+            <p role="contentinfo" area-checked="true"><a href="about-us.html">Learn about the Able Homes team</a></p>
           </div>
           <div class="col-md-4">
-            <h3>Our Agents</h3>
-            <p>Certified agents here to serve you.</p>
+            <h3 role="contentinfo" area-checked="true">Our Agents</h3>
+            <p role="contentinfo" area-checked="true">Certified agents here to serve you.</p>
             <p><a href="our-agents.html">Learn about our agents</a></p>
           </div>
           <div class="col-md-4">
-            <h3>Events</h3>
-            <p>Meet us in person at one of our upcoming open houses.</p>
-            <p><a href="events.html">Events</a></p>
+            <h3 role="contentinfo" area-checked="true">Events</h3>
+            <p role="contentinfo" area-checked="true">Meet us in person at one of our upcoming open houses.</p>
+            <p role="contentinfo" area-checked="true"><a href="events.html">Events</a></p>
           </div>
         </div>
       </div>

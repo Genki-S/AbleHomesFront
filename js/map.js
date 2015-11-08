@@ -110,6 +110,9 @@ function initAutocomplete() {
     $('#house-list').text('');
 
     _houseList.forEach(function(house, i) {
+      if (!house.accessibilityFeatures) {
+        house.accessibilityFeatures = ["NA"];
+      }
       console.log(house);
 
       var lat = house.coordinates[1];
@@ -127,6 +130,11 @@ function initAutocomplete() {
         $('#houseDetailModal #houseImage').text('');
         $('#houseDetailModal #houseImage').append(
           '<img src="https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + lat +',' + lng + '&key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4">'
+        );
+        $('#houseAddress').text(house.address);
+        $('#accessibilityFeatureList').text('');
+        $('#accessibilityFeatureList').append(
+          house.accessibilityFeatures.map(function(a) { return '<li>' + a + '</li>'; }).join('')
         );
         $('#saveForComparisonButton').data('house-list-index', i);
         $('#houseDetailModal').modal();
@@ -163,6 +171,11 @@ function initAutocomplete() {
     $('#houseDetailModal #houseImage').text('');
     $('#houseDetailModal #houseImage').append(
       '<img src="https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + lat +',' + lng + '&key=AIzaSyD9zgc6nldepHmG7uY5ZEpakyBHPPz5Fq4">'
+    );
+    $('#houseAddress').text(_houseList[idx].address);
+    $('#accessibilityFeatureList').text('');
+    $('#accessibilityFeatureList').append(
+      _houseList[idx].accessibilityFeatures.map(function(a) { return '<li>' + a + '</li>'; }).join('')
     );
     $('#saveForComparisonButton').data('house-list-index', idx);
     $('#houseDetailModal').modal();

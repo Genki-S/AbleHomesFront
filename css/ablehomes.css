@@ -74,3 +74,16 @@
     font-size: 15px;
 }
 
+img.headshot {
+    border-radius: 50%;
+   
+}
+
+div.headshot {
+  text-align: center;
+  margin: 1em;
+}
+
+div.calendar {
+  text-align: center;
+}

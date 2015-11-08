@@ -2,9 +2,11 @@
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
 
+var _houseList = [];
+var _searchMarker = null;
+var _markers = [];
+
 function initAutocomplete() {
-  var searchMarker = null;
-  var markers = [];
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7785190, lng: -122.405640037},
     zoom: 13,
@@ -14,7 +16,6 @@ function initAutocomplete() {
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
@@ -36,29 +37,8 @@ function initAutocomplete() {
         radius: radMeter,
       }
     }).done (function (res) {
-      // Clear out the old markers.
-      markers.forEach(function(marker) {
-        marker.setMap(null);
-      });
-      markers = [];
-
-      res.bundle.forEach(function(house) {
-        console.log(house);
-
-        var lat = house.coordinates[1];
-        var lng = house.coordinates[0];
-
-        // Create a marker for each place.
-        var marker = new google.maps.Marker({
-          map: map,
-          title: house.address,
-          position: {lat: lat, lng: lng},
-        });
-        markers.push(marker);
-        google.maps.event.addListener(marker, "mousedown", function() {
-          console.log(house);
-        });
-      });
+      _houseList = res.bundle;
+      houseListUpdatedHandler();
     });
   });
 
@@ -84,7 +64,8 @@ function initAutocomplete() {
       };
 
       // Create a marker for each place.
-      searchMarker = new google.maps.Marker({
+      if (_searchMarker) { _searchMarker.setMap(null); }
+      _searchMarker = new google.maps.Marker({
         map: map,
         icon: icon,
         title: place.name,
@@ -105,7 +86,30 @@ function initAutocomplete() {
       scrollTop:   $('#search-results').offset().top
     }, 500);
   });
-  // [END region_getplaces]
+
+  function houseListUpdatedHandler() {
+    // Clear out the old markers.
+    _markers.forEach(function(marker) { marker.setMap(null); });
+    _markers = [];
+
+    _houseList.forEach(function(house) {
+      console.log(house);
+
+      var lat = house.coordinates[1];
+      var lng = house.coordinates[0];
+
+      // Create a marker for each place.
+      var marker = new google.maps.Marker({
+        map: map,
+        title: house.address,
+        position: {lat: lat, lng: lng},
+      });
+      _markers.push(marker);
+      google.maps.event.addListener(marker, "mousedown", function() {
+        console.log(house);
+      });
+    });
+  }
 }
 
 var rad = function(x) {

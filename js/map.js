@@ -57,7 +57,7 @@ function initAutocomplete() {
     var bounds = map.getBounds();
     var center = bounds.getCenter();
     var ne = bounds.getNorthEast();
-    var radMeter = getDistanceMeter(center, ne) / 2.0;
+    var radMeter = getDistanceMeter(center, ne);
     // update with retsly data
     $.ajax({
       type: 'GET',
